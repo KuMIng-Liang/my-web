@@ -25,11 +25,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },
-      // '/login': {
-      //   target: 'http://localhost:9090',
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/login/, '/login')
-      // }
+      '/login': {
+        target: 'http://localhost:9090',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/login/, '/login')
+      }
 
     }
   }
