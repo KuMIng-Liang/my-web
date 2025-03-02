@@ -38,6 +38,7 @@
 <script setup>
 import axios from "axios";
 import {reactive} from "vue";
+import router from "@/router/index.js";
 
 const Login = () => {
   axios.post('/api/login', { username: formState.username, password: formState.password})
@@ -49,7 +50,14 @@ const formState = reactive({
 });
 const onFinish = async (values) => {
   console.log('Success:', values);
-  await axios.post('/api/login', formState)
+  await axios.post('/api/login', formState).then(res=>{
+    if (res.data.code === 1){
+      router.push('/')
+      localStorage.setItem('token', res.data.data)
+    } else {
+      alert(res.data.msg)
+    }
+  })
 
 };
 
